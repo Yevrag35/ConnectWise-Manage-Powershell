@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MG.ConnectWise-DotNet", "MG.ConnectWise-DotNet\MG.ConnectWise-DotNet.csproj", "{04436A4F-A32F-4357-851A-AF11BE037971}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04436A4F-A32F-4357-851A-AF11BE037971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04436A4F-A32F-4357-851A-AF11BE037971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04436A4F-A32F-4357-851A-AF11BE037971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04436A4F-A32F-4357-851A-AF11BE037971}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23863DE8-C92C-4FE1-8C8C-F0CFFAB8D64C}
+	EndGlobalSection
+EndGlobal
