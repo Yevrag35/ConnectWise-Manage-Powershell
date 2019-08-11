@@ -32,10 +32,10 @@ namespace MG.ConnectWise.Cmdlets
 
             CWContext.HttpClient = new HttpClient(handler)
             {
-                BaseAddress = new Uri("https://api-na.myconnectwise.net")
+                BaseAddress = CWContext.BASE_URL
             };
 
-            CWContext.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authStr);
+            CWContext.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(CWContext.BASIC_AUTH, authStr);
         }
     }
 }

@@ -60,8 +60,16 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objects\Conversion.cs" />
+    <Compile Include="Results\Bases\BaseResult.cs" />
+    <Compile Include="Results\Bases\IJsonObject.cs" />
+    <Compile Include="Results\Time\TimeEntry.cs" />
+    <Compile Include="Cmdlets\Bases\BaseCWCmdlet.cs" />
+    <Compile Include="Cmdlets\Bases\BaseLazyCWCmdlet.cs" />
     <Compile Include="Cmdlets\Project\GetProject.cs" />
     <Compile Include="Cmdlets\Connection\ConnectOnline.cs" />
+    <Compile Include="Cmdlets\Project\GetProjectPhase.cs" />
+    <Compile Include="Cmdlets\Time\GetTimeEntries.cs" />
     <Compile Include="Objects\CWContext.cs" />
     <Compile Include="Objects\IntegratorAuth.cs" />
     <Compile Include="Objects\IPassword.cs" />
@@ -79,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assemblies\" />
-    <Folder Include="Cmdlets\Bases\" />
     <Folder Include="TypeFormats\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

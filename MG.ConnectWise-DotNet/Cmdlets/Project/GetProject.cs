@@ -9,24 +9,22 @@ using System.Net.Http;
 namespace MG.ConnectWise.Cmdlets
 {
     [Cmdlet(VerbsCommon.Get, "Project", ConfirmImpact = ConfirmImpact.None)]
-    public class GetProject : JsonPsObjectCmdlet
+    public class GetProject : BaseLazyCWCmdlet
     {
-        internal const string EP = "/project/projects";
+        protected const string EP = "/project/projects";
+        protected override string Endpoint => EP;
 
-        protected override string BaseUri => CWContext.BASE_URI;
-        protected override Uri BaseUrl => CWContext.BASE_URL;
-        protected override HttpClient HttpClient => CWContext.HttpClient;
 
-        [Parameter(Mandatory = false, Position = 0)]
-        public int[] Id { get; set; }
+        [Parameter(Mandatory = false, Position = 0, ValueFromPipelineByPropertyName = true)]
+        public int[] ProjectId { get; set; }
 
         protected override void BeginProcessing() => base.BeginProcessing();
 
         protected override void ProcessRecord()
         {
-            if (!this.MyInvocation.BoundParameters.ContainsKey("Id"))
+            if (!this.MyInvocation.BoundParameters.ContainsKey("ProjectId"))
             {
-                string jsonResult = base.TryGet(EP);
+                string jsonResult = base.TryGet(EP + "?pageSize=1000");
                 if (!string.IsNullOrEmpty(jsonResult))
                 {
                     base.StringResults.Add(jsonResult);
@@ -34,15 +32,19 @@ namespace MG.ConnectWise.Cmdlets
             }
             else
             {
-                for (int i = 0; i < this.Id.Length; i++)
+                for (int i = 0; i < this.ProjectId.Length; i++)
                 {
-                    int id = this.Id[i];
-                    string ep = string.Format(EP + "/{0}", id);
-                    string jsonResult = base.TryGet(ep);
-                    base.StringResults.Add(jsonResult);
+                    int id = this.ProjectId[i];
+                    string ep = base.GetEndpointWithId(id);
+                    string jsonResult = base.TryGet(ep + "?pageSize=1000");
+                    if (!string.IsNullOrEmpty(jsonResult))
+                    {
+                        base.StringResults.Add(jsonResult);
+                    }
                 }
             }
-            base.ProcessRecord();
         }
+
+        protected override void EndProcessing() => base.EndProcessing();
     }
 }
