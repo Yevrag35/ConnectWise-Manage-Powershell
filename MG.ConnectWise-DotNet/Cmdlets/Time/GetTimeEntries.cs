@@ -28,6 +28,7 @@ namespace MG.ConnectWise.Cmdlets.Time
 
         [Parameter(Mandatory = true, ParameterSetName = "ByMemberNameWithoutDateRange")]
         [Parameter(Mandatory = true, ParameterSetName = "ByMemberNameWithDateRange")]
+        [SupportsWildcards]
         public string MemberName { get; set; }
 
         //[Parameter(Mandatory = false)]
@@ -65,7 +66,14 @@ namespace MG.ConnectWise.Cmdlets.Time
             {
                 if (this.MyInvocation.BoundParameters.ContainsKey("MemberName"))
                 {
-                    conditions.Add(string.Format("member/identifier=\"{0}\"", this.MemberName));
+                    string memIden = "member/identifier{0}\"{1}\"";
+                    string op = "=";
+                    if (WildcardPattern.ContainsWildcardCharacters(this.MemberName))
+                    {
+                        op = " like ";
+                    }
+
+                    conditions.Add(string.Format(memIden, op, this.MemberName));
                 }
                 else if (this.MyInvocation.BoundParameters.ContainsKey("MemberId"))
                 { 
